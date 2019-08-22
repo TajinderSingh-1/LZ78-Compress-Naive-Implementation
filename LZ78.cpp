@@ -64,11 +64,11 @@ void compress(std::vector<uint8_t> &v) {
 	}
 
 	for (const auto &x : dicts) {
-		std::cout << " Dizionario: " << x.id << " = " << x.s << "\n";
+		cout << " Dizionario: " << x.id << " = " << x.s << "\n";
 	}
 
 	for (const auto &y : outs) {
-		std::cout << "Output: (" << y.id << ", " << y.ch << ")\n";
+		cout << "Output: (" << y.id << ", " << y.ch << ")\n";
 	}
 
 }
@@ -85,7 +85,7 @@ int main(int argc, char*argv[]) {
 	is.unsetf(ios::skipws);
 
 	//a fast method in order to read all bytes of a input file and put them into a vector
-	std::vector<uint8_t> v = { std::istream_iterator<uint8_t> {is}, std::istream_iterator<uint8_t>{} };
+	vector<uint8_t> v = { istream_iterator<uint8_t> {is}, istream_iterator<uint8_t>{} };
 
 	compress(v);
 
