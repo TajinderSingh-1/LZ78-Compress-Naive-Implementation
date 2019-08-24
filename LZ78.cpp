@@ -95,8 +95,9 @@ void compress(std::vector<uint8_t> &v) {
 
 int main(int argc, char*argv[]) {
 	
-	// Open a file in binary mode...
-	ifstream is("input.txt", ios::binary);
+
+	// Open a file (the filename is the first parameter of this program) in binary mode...
+	ifstream is(argv[1], ios::binary);
 	if (!is)
 		return EXIT_FAILURE;
 	
