@@ -9,6 +9,8 @@
 
 using namespace std;
 
+
+
 struct dict {
 	int id;
 	std::string s;
@@ -19,6 +21,21 @@ struct dict {
 struct output {
 	int id; 
 	uint8_t ch;
+};
+
+
+class functorDict{
+
+private:        
+    std::string aux;
+
+public:
+    functorDict(std::string s): aux (s){};
+
+    bool operator()(const dict &d) const{
+        return d.s == aux;
+    }
+
 };
 
 
@@ -35,12 +52,12 @@ void compress(std::vector<uint8_t> &v) {
 	//We will use it to set "id"  field of "output" struct (aka, output.id)
 	int id_aux = 0;
 	
-	for (unsigned i = 0; i < v.size();i++) {
+	for (unsigned i = 0; i < v.size() -1;i++) {
 		ss << v[i];
 		aux = ss.str();
 		
 		// Find if the aux string is already present in any instance of dicts
-		auto it = find_if(dicts.begin(), dicts.end(), [&](dict &d) {return d.s == aux; });
+		auto it = find_if(dicts.begin(), dicts.end(), functorDict(aux));
 		
 		// If not so:
 		if (it == dicts.end()) {
@@ -62,6 +79,8 @@ void compress(std::vector<uint8_t> &v) {
 			continue;
 		}
 	}
+
+    
 
 	for (const auto &x : dicts) {
 		cout << " Dizionario: " << x.id << " = " << x.s << "\n";
