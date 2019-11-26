@@ -52,7 +52,7 @@ void compress(std::vector<uint8_t> &v) {
 	//We will use it to set "id"  field of "output" struct (aka, output.id)
 	int id_aux = 0;
 	
-	for (unsigned i = 0; i < v.size() -1;i++) {
+	for (unsigned i = 0 ; i < v.size()-1 ; i++) {
 		ss << v[i];
 		aux = ss.str();
 		
